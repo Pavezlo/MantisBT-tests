@@ -11,6 +11,10 @@ namespace MantisBT_tests
         private string username = "administrator";
         private string password = "root";
 
+        public AccountData()
+        {
+        }
+
         public AccountData (string username, string password)
         {
             this.username = username;

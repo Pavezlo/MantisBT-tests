@@ -35,7 +35,7 @@ namespace MantisBT_tests
 
         public override string ToString()
         {
-            return "name=" + Name + "\ntitle=" + Title;
+            return "name=" + Name;
         }
 
         public int CompareTo (ProjectData other)
@@ -50,5 +50,7 @@ namespace MantisBT_tests
         public string Name { get; set; }        
 
         public string Title { get; set;}
+
+        public string Id { get; set;}
     }
 }

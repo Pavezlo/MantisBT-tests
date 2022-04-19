@@ -14,12 +14,13 @@ namespace MantisBT_tests
                 Name = "bbb" + GenerateRandomString(10),
                 Title = "вот такой здесь текст"
             };
-            List<ProjectData> oldProjects = app.ProjectManagement.GetProjectList();
+            AccountData account = new AccountData("administrator", "root");
+            List<ProjectData> oldProjects = app.API.GetAllProject(account);
             Assert.False(app.ProjectManagement.CheckDuplicateName(oldProjects, project));
             app.ProjectManagement.Create(project);
-            Assert.AreEqual(oldProjects.Count + 1, app.ProjectManagement.GetProjectCount());
+            Assert.AreEqual(oldProjects.Count + 1, app.API.GetAllProject(account).Count);
 
-            List<ProjectData> newGroups = app.ProjectManagement.GetProjectList();
+            List<ProjectData> newGroups = app.API.GetAllProject(account);
             oldProjects.Add(project);
             oldProjects.Sort();
             newGroups.Sort();

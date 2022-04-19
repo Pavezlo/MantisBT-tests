@@ -21,6 +21,7 @@ namespace MantisBT_tests
             loginHelper = new LoginHelper(this);
             managementMenuHelper = new ManagementMenuHelper(this, baseURL);
             projectManagementHelper = new ProjectManagementHelper(this);
+            api = new APIHelper(this);
         }
         #endregion
 
@@ -29,7 +30,7 @@ namespace MantisBT_tests
             if (!applicationManager.IsValueCreated)
             {
                 ApplicationManager newInstance = new ApplicationManager();
-                newInstance.ManagermentMenu.GoToHomePage();
+                newInstance.ManagementMenu.GoToHomePage();
                 applicationManager.Value = newInstance;                
             }
             return applicationManager.Value;
@@ -72,7 +73,7 @@ namespace MantisBT_tests
 
         #region ManagermentMenu
         protected ManagementMenuHelper managementMenuHelper;
-        public ManagementMenuHelper ManagermentMenu
+        public ManagementMenuHelper ManagementMenu
         {
             get
             {
@@ -88,6 +89,17 @@ namespace MantisBT_tests
             get
             {
                 return projectManagementHelper;
+            }
+        }
+        #endregion
+
+        #region Api
+        protected APIHelper api;
+        public APIHelper API
+        {
+            get
+            {
+                return api;
             }
         }
         #endregion

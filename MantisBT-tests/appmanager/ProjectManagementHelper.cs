@@ -12,8 +12,8 @@ namespace MantisBT_tests
 
         public ProjectManagementHelper Create(ProjectData project)
         {
-            manager.ManagermentMenu.GoToManagementPage();
-            manager.ManagermentMenu.GoToManagementProjectPage();
+            manager.ManagementMenu.GoToManagementPage();
+            manager.ManagementMenu.GoToManagementProjectPage();
             InitNewProjectCreation();
             FillProjectForm(project);
             SubmitProjectCreation();
@@ -62,8 +62,8 @@ namespace MantisBT_tests
 
         public ProjectManagementHelper Remove(int p)
         {
-            manager.ManagermentMenu.GoToManagementPage();
-            manager.ManagermentMenu.GoToManagementProjectPage();
+            manager.ManagementMenu.GoToManagementPage();
+            manager.ManagementMenu.GoToManagementProjectPage();
             SelectProject(p);
             RemoveProject();
             RemoveProject();
@@ -72,8 +72,8 @@ namespace MantisBT_tests
 
         public bool ProjectCheck()
         {
-            manager.ManagermentMenu.GoToManagementPage();
-            manager.ManagermentMenu.GoToManagementProjectPage();
+            manager.ManagementMenu.GoToManagementPage();
+            manager.ManagementMenu.GoToManagementProjectPage();
             return IsElementPresent(By.XPath("//h4[text()='			Проекты		']/../..//tbody/tr"));
         }
 
@@ -101,8 +101,8 @@ namespace MantisBT_tests
         {
             if (projectCache == null)
             {
-                manager.ManagermentMenu.GoToManagementPage();
-                manager.ManagermentMenu.GoToManagementProjectPage();
+                manager.ManagementMenu.GoToManagementPage();
+                manager.ManagementMenu.GoToManagementProjectPage();
                 projectCache = new List<ProjectData>();
                 ICollection<IWebElement> elements = driver.FindElements(By.XPath("//h4[text()='			Проекты		']/../..//tbody/tr"));
                 foreach (IWebElement element in elements)

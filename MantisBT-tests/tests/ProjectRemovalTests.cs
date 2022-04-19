@@ -10,19 +10,21 @@ namespace MantisBT_tests
         [Test]
         public void ProjectRemovalTest()
         {
-            if (!app.ProjectManagement.ProjectCheck())
+            ProjectData project = new ProjectData()
             {
-                ProjectData project = new ProjectData()
-                {
-                    Name = "hhhh",
-                    Title = "prprpr"
-                };
-                app.ProjectManagement.Create(project);
+                Name = "hhhh",
+                Title = "prprpr"
+            };
+            AccountData account = new AccountData("administrator", "root");
+            List<ProjectData> oldProject = app.API.GetAllProject(account);
+            if (app.API.GetAllProject(account).Count == 0)
+            {
+                app.API.ProjectAdd(account, project);
+                oldProject = app.API.GetAllProject(account);
             }
-            List<ProjectData> oldProject = app.ProjectManagement.GetProjectList();
             app.ProjectManagement.Remove(1);
-            Assert.AreEqual(oldProject.Count - 1, app.ProjectManagement.GetProjectCount());
-            List<ProjectData> newProject = app.ProjectManagement.GetProjectList();
+            Assert.AreEqual(oldProject.Count - 1, app.API.GetAllProject(account).Count);
+            List<ProjectData> newProject = app.API.GetAllProject(account);
             oldProject.RemoveAt(0);
             Assert.AreEqual(oldProject, newProject);
         }
