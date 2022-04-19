@@ -21,25 +21,17 @@ namespace MantisBT_tests
             return this;
         }
 
-        public string CheckDuplicateName(List<ProjectData> oldProjects, ProjectData project)
+        public bool CheckDuplicateName(List<ProjectData> oldProjects, ProjectData project)
         {
-            bool duplicate = false;
-            do
+            
+            foreach (ProjectData oldProject in oldProjects)
             {
-                project.Name = project.Name + "1";
-                foreach (ProjectData oldProject in oldProjects)
-                {
-                    if (oldProject.Name.Equals(project.Name))
-                    {
-                        duplicate = true;
-                        break;
-                    }else
-                    {
-                        duplicate = false;
-                    }
-                }
-            } while (duplicate == true);
-            return project.Name;
+               if (oldProject.Name.Equals(project.Name))
+                  {
+                       return true;
+                  }
+            }
+            return false;
         }
 
         public ProjectManagementHelper InitNewProjectCreation()

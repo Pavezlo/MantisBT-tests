@@ -11,11 +11,11 @@ namespace MantisBT_tests
         {
             ProjectData project = new ProjectData()
             {
-                Name = "bbb",
+                Name = "bbb" + GenerateRandomString(10),
                 Title = "вот такой здесь текст"
             };
             List<ProjectData> oldProjects = app.ProjectManagement.GetProjectList();
-            project.Name = app.ProjectManagement.CheckDuplicateName(oldProjects, project);
+            Assert.False(app.ProjectManagement.CheckDuplicateName(oldProjects, project));
             app.ProjectManagement.Create(project);
             Assert.AreEqual(oldProjects.Count + 1, app.ProjectManagement.GetProjectCount());
 
